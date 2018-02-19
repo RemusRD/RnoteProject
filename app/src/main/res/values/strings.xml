@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">RNote</string>
+    <string name="settings_name">Settings</string>
+    <string name="action_search">earch</string>
+    <string name="about_us">Acerca de</string>
+    <string name="account">Cuenta</string>
+    <string name="sign_out">Sign out</string>
+    <string name="main_activity_toolbar">ToolBar</string>
+    <string name="action_send">action_send</string>
+    <string name="donation_text">Hola!, gracias por utilizar Rnote, si quieres contribuir a la
+        compra de mi tesla, puedes donar aquí.</string>
+    <string name="donation_paypal_item">Un café para Richard</string>
+    <string-array name="drawer_array">
+        <item>Valora tu experiencia</item>
+        <item>Opciones</item>
+        <item>Acerca de RNote</item>
+    </string-array>
+</resources>

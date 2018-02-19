@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.richard.rnoteauth.activities.NewTextNoteActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/noteNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textAutoCorrect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Spinner
+        android:id="@+id/notebooksSpinner"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/noteNameEditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/noteBookTextView"
+        app:layout_constraintTop_toBottomOf="@+id/noteNameEditText" />
+
+    <TextView
+        android:id="@+id/noteBookTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuaderno:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/noteNameEditText"
+        app:layout_constraintTop_toTopOf="@+id/notebooksSpinner" />
+
+    <EditText
+        android:id="@+id/noteTextEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Texto de la nota"
+        android:inputType="textCapSentences|textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notebooksSpinner" />
+
+</android.support.constraint.ConstraintLayout>

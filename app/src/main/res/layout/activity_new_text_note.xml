@@ -20,8 +20,6 @@
         android:id="@+id/noteNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Nombre"
@@ -47,17 +45,16 @@
         android:id="@+id/noteBookTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Cuaderno:"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/noteNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/notebooksSpinner" />
 
     <EditText
         android:id="@+id/noteTextEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Texto de la nota"

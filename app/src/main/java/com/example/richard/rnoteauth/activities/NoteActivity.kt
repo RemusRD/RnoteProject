@@ -3,6 +3,7 @@ package com.example.richard.rnoteauth.activities
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
@@ -30,8 +31,7 @@ class NoteActivity : AppCompatActivity() {
     lateinit var result:Drawer
 
     companion object {
-        private const val PAYPAL_USER = "richarffx@gmail.com"
-        private const val PAYPAL_CURRENCY_CODE = "EUR"
+        private const val PAYPAL_LINK = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=KCDN4LEJWQ2QJ&lc=ES&item_name=Richard%20%3a%29&item_number=ELTESLADERICHARD&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted";
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +79,7 @@ class NoteActivity : AppCompatActivity() {
             }
             secondaryItem("Ayúdame") {
                 onClick { _ ->
-                    toast("Aún por implementar")
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(PAYPAL_LINK)))
                     false
                 }
                 ///A implementar donaciones

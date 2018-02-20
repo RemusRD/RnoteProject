@@ -6,21 +6,24 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
 import com.example.richard.rnoteauth.R
 import com.example.richard.rnoteauth.activities.NewTextNoteActivity
 import com.example.richard.rnoteauth.adapters.NoteViewHolder
 import com.example.richard.rnoteauth.data.MyItem
+import com.example.richard.rnoteauth.helpers.AbstractSwipeCallback
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_simple_sample.*
-import kotlinx.android.synthetic.main.item.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.support.v4.toast
 
+
 class DrawerFragment : Fragment() {
+
 
 /*    private val speedDialSizeOptions = arrayOf(
             Pair("None", 0),
@@ -65,6 +68,7 @@ class DrawerFragment : Fragment() {
 
         //fab.speedDialMenuAdapter = speedDialMenuAdapter;
         fab.contentCoverEnabled = true
+
         var query = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().currentUser!!.uid)
         val options = FirebaseRecyclerOptions.Builder<MyItem>().setQuery(query, MyItem::class.java).build()
 
@@ -88,10 +92,26 @@ class DrawerFragment : Fragment() {
 
         drawer_recyclerView.layoutManager = LinearLayoutManager(activity)
         drawer_recyclerView.adapter = myAdapter
-
         drawer_recyclerView.addItemDecoration(DividerItemDecoration(drawer_recyclerView.context, DividerItemDecoration.VERTICAL))
 
+        val rightSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.RIGHT){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+                //myAdapter.getRef(viewHolder!!.adapterPosition).removeValue()
+                toast("Nota Archivada")
 
+            }
+
+        }
+        val leftSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.LEFT){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+                //myAdapter.getRef(viewHolder!!.adapterPosition).removeValue()
+                toast("Nota Borrada")
+
+            }
+
+        }
+        ItemTouchHelper(rightSwipeHandler).attachToRecyclerView(drawer_recyclerView)
+        ItemTouchHelper(leftSwipeHandler).attachToRecyclerView(drawer_recyclerView)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

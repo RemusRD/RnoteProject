@@ -40,9 +40,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-    public fun holaquetal(v:View){
-
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

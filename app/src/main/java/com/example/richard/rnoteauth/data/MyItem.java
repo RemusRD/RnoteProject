@@ -2,7 +2,6 @@ package com.example.richard.rnoteauth.data;
 
 
 import org.parceler.Parcel;
-
 @Parcel
 public class MyItem {
 

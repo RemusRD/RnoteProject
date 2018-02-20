@@ -18,11 +18,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_simple_sample.*
+import kotlinx.android.synthetic.main.recycler_fragment_layout.*
 import org.jetbrains.anko.support.v4.toast
 
 
-class DrawerFragment : Fragment() {
+class noteRecyclerFragment : Fragment() {
 
 
 /*    private val speedDialSizeOptions = arrayOf(
@@ -37,7 +37,7 @@ class DrawerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_simple_sample, container, false)
+        val view = inflater.inflate(R.layout.recycler_fragment_layout, container, false)
 
         return view
     }
@@ -121,7 +121,7 @@ class DrawerFragment : Fragment() {
     companion object {
         ///EDITAR PARÁMETRO DEL MÉTODO
         fun newInstance(title: String) =
-                DrawerFragment().apply {
+                noteRecyclerFragment().apply {
                 }
     }
 

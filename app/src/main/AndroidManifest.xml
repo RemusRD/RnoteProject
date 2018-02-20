@@ -20,7 +20,6 @@
         <activity android:name=".activities.NoteActivity" />
         <activity android:name=".activities.LastLoginActivity" />
         <activity android:name=".activities.NewTextNoteActivity" />
-        <activity android:name=".DonationActivity"></activity>
     </application>
 
 </manifest>

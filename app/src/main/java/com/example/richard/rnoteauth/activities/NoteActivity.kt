@@ -1,6 +1,5 @@
 package com.example.richard.rnoteauth.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import co.zsmb.materialdrawerkt.builders.accountHeader
 import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
@@ -17,15 +15,12 @@ import co.zsmb.materialdrawerkt.draweritems.badgeable.secondaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import co.zsmb.materialdrawerkt.draweritems.sectionHeader
-import com.example.richard.rnoteauth.BuildConfig
 import com.example.richard.rnoteauth.R
-import com.example.richard.rnoteauth.fragments.DrawerFragment
+import com.example.richard.rnoteauth.fragments.noteRecyclerFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.mikepenz.materialdrawer.Drawer
-import kotlinx.android.synthetic.main.activity_fragment_dark_toolbar.*
+import kotlinx.android.synthetic.main.activity_dark_toolbar.*
 import org.jetbrains.anko.toast
-import org.sufficientlysecure.donations.DonationsFragment
-import kotlin.reflect.KClass
 
 class NoteActivity : AppCompatActivity() {
     lateinit var result:Drawer
@@ -37,12 +32,12 @@ class NoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_dark_toolbar)
+        setContentView(R.layout.activity_dark_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle("RNote")
         val lastLoginIntent = Intent(this, LoginActivity::class.java)
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DrawerFragment.newInstance(
+                .replace(R.id.fragment_container, noteRecyclerFragment.newInstance(
                         "DEMO"))
                 .commit()
 
@@ -82,17 +77,6 @@ class NoteActivity : AppCompatActivity() {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(PAYPAL_LINK)))
                     false
                 }
-                ///A implementar donaciones
-/*                onClick { _ ->
-                    supportFragmentManager.beginTransaction().replace(
-                            R.id.fragment_container,
-                            DonationsFragment.newInstance(BuildConfig.DEBUG, false, null, null,
-                                    null, true, PAYPAL_USER, PAYPAL_CURRENCY_CODE, getString(R.string.donation_paypal_item),
-                                    false, null, null, false, null)
-                    )
-
-                    false
-                }*/
             }
             secondaryItem("Open source") {
                 onClick { _ ->

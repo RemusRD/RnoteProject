@@ -1,7 +1,6 @@
 package com.example.richard.rnoteauth.fragments
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
@@ -10,9 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
 import com.example.richard.rnoteauth.R
-import com.example.richard.rnoteauth.activities.NewTextNoteActivity
 import com.example.richard.rnoteauth.adapters.NoteViewHolder
-import com.example.richard.rnoteauth.data.MyItem
+import com.example.richard.rnoteauth.data.textNote
 import com.example.richard.rnoteauth.helpers.AbstractSwipeCallback
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -46,9 +44,7 @@ class noteRecyclerFragment : Fragment() {
         drawer_recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         fab.setButtonIconResource(R.drawable.ic_add)
 
-        fab.setOnClickListener {
-            startActivity(Intent(activity, NewTextNoteActivity::class.java))
-        }
+
         ///A IMPLEMENTAR BOTÓN FAB CON OPCIONES
         /*val speedDialMenuAdapter = object : SpeedDialMenuAdapter() {
             override fun getCount(): Int {
@@ -70,15 +66,15 @@ class noteRecyclerFragment : Fragment() {
         fab.contentCoverEnabled = true
 
         var query = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().currentUser!!.uid)
-        val options = FirebaseRecyclerOptions.Builder<MyItem>().setQuery(query, MyItem::class.java).build()
+        val options = FirebaseRecyclerOptions.Builder<textNote>().setQuery(query, textNote::class.java).build()
 
-        val myAdapter = object : FirebaseRecyclerAdapter<MyItem, NoteViewHolder>(options){
+        val myAdapter = object : FirebaseRecyclerAdapter<textNote, NoteViewHolder>(options){
 
             override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NoteViewHolder {
                 return NoteViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.note_row, parent, false))
             }
 
-            override fun onBindViewHolder(holder: NoteViewHolder, position: Int, model: MyItem) {
+            override fun onBindViewHolder(holder: NoteViewHolder, position: Int, model: textNote) {
                 holder.setTextView_title(model.title)
                 holder.setTextView_text(model.mainText)
                 holder.setTextView_lastMod(model.lastMod)

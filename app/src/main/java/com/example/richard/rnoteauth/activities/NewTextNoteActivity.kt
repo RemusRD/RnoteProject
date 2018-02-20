@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import com.example.richard.rnoteauth.R
-import com.example.richard.rnoteauth.data.MyItem
+import com.example.richard.rnoteauth.data.textNote
 import com.example.richard.rnoteauth.helpers.DateHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -32,7 +32,7 @@ class NewTextNoteActivity : AppCompatActivity() {
                 noteNameEditText.setError("La nota debe tener un nombre")
             } else {
                 FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().currentUser!!.uid).push().
-                        setValue(MyItem(noteNameEditText.text.toString(), noteTextEditText.text.toString(),
+                        setValue(textNote(noteNameEditText.text.toString(), noteTextEditText.text.toString(),
                                 DateHelper.getCurrentDate()))
                 finish()
             }

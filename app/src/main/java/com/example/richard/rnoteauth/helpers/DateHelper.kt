@@ -6,7 +6,7 @@ import java.util.*
 class DateHelper {
     companion object {
         fun getCurrentDate(): String {
-            return SimpleDateFormat("dd-MM-yyyy 'T' HH:mm:ss").format(Calendar.getInstance().time)
+            return SimpleDateFormat("dd-MM-yyyy 'A las' HH:mm:ss").format(Calendar.getInstance().time)
         }
     }
 }

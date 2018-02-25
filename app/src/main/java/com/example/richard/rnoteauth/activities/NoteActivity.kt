@@ -38,7 +38,7 @@ class NoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dark_toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "RNote"
+        supportActionBar?.title = "Tus notas"
         val lastLoginIntent = Intent(this, LoginActivity::class.java)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, noteRecyclerFragment.newInstance(
@@ -47,6 +47,7 @@ class NoteActivity : AppCompatActivity() {
 
 
         result = drawer {
+            onTitleChanged("CURRENT", R.color.primaryDarkColor)
             displayBelowStatusBar = true
             savedInstance = savedInstanceState
             accountHeader {
@@ -64,6 +65,8 @@ class NoteActivity : AppCompatActivity() {
             }
             actionBarDrawerToggleEnabled = true
             primaryItem("Todas tus notas") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_sticky_note
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -72,9 +75,13 @@ class NoteActivity : AppCompatActivity() {
             }
 
             expandableBadgeItem("Cuadernos") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 badge("2")
                 iicon = FontAwesome.Icon.faw_book
                 secondaryItem("Cuaderno 1") {
+                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                     iicon = GoogleMaterial.Icon.gmd_book
                     level = 2
                     onClick { _ ->
@@ -83,6 +90,9 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
                 secondaryItem("Cuaderno 2") {
+
+                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                     iicon = GoogleMaterial.Icon.gmd_book
                     level = 2
                     onClick { _ ->
@@ -91,11 +101,22 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
             }
+            primaryItem("Modo sin conexión") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+                iicon = FontAwesome.Icon.faw_wifi
+                onClick { _ ->
+                    toast("Aún por implementar")
+                    false
+                }
+            }
             divider {
 
             }
 
             secondaryItem("Opciones") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_cog
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -104,6 +125,8 @@ class NoteActivity : AppCompatActivity() {
 
             }
             secondaryItem("Open source") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_github
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -111,7 +134,8 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
             secondaryItem("Contacto") {
-
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_bullhorn
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -121,6 +145,8 @@ class NoteActivity : AppCompatActivity() {
             }
 
             secondaryItem("Acerca de") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_users
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -128,6 +154,8 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
             secondaryItem("Ayúdame") {
+                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_paypal
                 onClick { _ ->
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(PAYPAL_LINK)))
@@ -135,9 +163,11 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
 
-            divider { }
             footer {
+
                 primaryItem("Reportar un problema") {
+                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                     iicon = FontAwesome.Icon.faw_bug
                     onClick { _ ->
                         toast("Aún por implementar")
@@ -146,6 +176,8 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
                 primaryItem("Perfil") {
+                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                     iicon = FontAwesome.Icon.faw_user
                     onClick { _ ->
                         toast("Aún por implementar")
@@ -154,6 +186,8 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
                 primaryItem("Cerrar sesión") {
+                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
+                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                     iicon = FontAwesome.Icon.faw_sign_out_alt
                     onClick { _ ->
                         FirebaseAuth.getInstance().signOut()

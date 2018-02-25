@@ -52,6 +52,7 @@ dependencies {
     implementation "com.mikepenz:iconics-core:3.0.3@aar"
     implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
     implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }
 
 

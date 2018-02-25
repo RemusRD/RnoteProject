@@ -7,7 +7,12 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.example.richard.rnoteauth.R
 import com.example.richard.rnoteauth.adapters.NoteViewHolder
 import com.example.richard.rnoteauth.data.textNote
@@ -65,7 +70,7 @@ class noteRecyclerFragment : Fragment() {
         //fab.speedDialMenuAdapter = speedDialMenuAdapter;
         fab.contentCoverEnabled = true
 
-        var query = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().currentUser!!.uid)
+        var query = FirebaseDatabase.getInstance().reference.child(FirebaseAuth.getInstance().currentUser!!.uid)
         val options = FirebaseRecyclerOptions.Builder<textNote>().setQuery(query, textNote::class.java).build()
 
         val myAdapter = object : FirebaseRecyclerAdapter<textNote, NoteViewHolder>(options){
@@ -75,10 +80,12 @@ class noteRecyclerFragment : Fragment() {
             }
 
             override fun onBindViewHolder(holder: NoteViewHolder, position: Int, model: textNote) {
+
+
                 holder.setTextView_title(model.title)
                 holder.setTextView_text(model.mainText)
                 holder.setTextView_lastMod(model.lastMod)
-
+                holder.setImageView_icon(builder.build(model.title[0].toString().toUpperCase(), ColorGenerator.MATERIAL.getColor(model.title)))
             }
 
 
@@ -110,12 +117,9 @@ class noteRecyclerFragment : Fragment() {
         ItemTouchHelper(leftSwipeHandler).attachToRecyclerView(drawer_recyclerView)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     companion object {
         ///EDITAR PARÁMETRO DEL MÉTODO
+        val builder = TextDrawable.builder().beginConfig().withBorder(4).endConfig().round()
         fun newInstance(title: String) =
                 noteRecyclerFragment().apply {
                 }
@@ -124,14 +128,6 @@ class noteRecyclerFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return true
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-
-
-
 
 
 }

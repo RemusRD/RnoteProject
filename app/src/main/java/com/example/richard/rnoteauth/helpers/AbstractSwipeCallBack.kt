@@ -57,6 +57,7 @@ abstract class AbstractSwipeCallback(val context: Context, val swipeDirection: I
             Pair(itemView.right - deleteIconMargin - intrinsicWidth, itemView.right - deleteIconMargin)
         }
 
+    ///TODO: IMPORTANT INSTANTIATE ITEMS ONLY ONCE ON THE CNSTRUCTOR
     //por defecto devuelve el color de borrar
     private fun getColor(): Int = if (isRightSwipe()) Color.parseColor("#087f23") else Color.parseColor("#f44336")
 

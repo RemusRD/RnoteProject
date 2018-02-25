@@ -12,7 +12,6 @@ import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import java.io.FileInputStream
 import java.util.*
 
 class LoginActivity : AppCompatActivity() {

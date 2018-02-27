@@ -73,7 +73,7 @@ class noteRecyclerFragment : Fragment() {
         var query = FirebaseDatabase.getInstance().reference.child(FirebaseAuth.getInstance().currentUser!!.uid)
         val options = FirebaseRecyclerOptions.Builder<textNote>().setQuery(query, textNote::class.java).build()
 
-        val myAdapter = object : FirebaseRecyclerAdapter<textNote, NoteViewHolder>(options){
+        val myAdapter = object : FirebaseRecyclerAdapter<textNote, NoteViewHolder>(options) {
 
             override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NoteViewHolder {
                 return NoteViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.note_row, parent, false))
@@ -81,23 +81,25 @@ class noteRecyclerFragment : Fragment() {
 
             override fun onBindViewHolder(holder: NoteViewHolder, position: Int, model: textNote) {
 
-
-                holder.setTextView_title(model.title)
-                holder.setTextView_text(model.mainText)
-                holder.setTextView_lastMod(model.lastMod)
-                holder.setImageView_icon(builder.build(model.title[0].toString().toUpperCase(), ColorGenerator.MATERIAL.getColor(model.title)))
+                with(holder) {
+                    setTextView_title(model.title)
+                    setTextView_text(model.mainText)
+                    setTextView_lastMod(model.lastMod)
+                    setImageView_icon(builder.build(model.title[0].toString().toUpperCase(), ColorGenerator.MATERIAL.getColor(model.title)))
+                }
             }
 
 
         }
         myAdapter.startListening()
 
+        with(drawer_recyclerView) {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = myAdapter
+            addItemDecoration(DividerItemDecoration(drawer_recyclerView.context, DividerItemDecoration.VERTICAL))
+        }
 
-        drawer_recyclerView.layoutManager = LinearLayoutManager(activity)
-        drawer_recyclerView.adapter = myAdapter
-        drawer_recyclerView.addItemDecoration(DividerItemDecoration(drawer_recyclerView.context, DividerItemDecoration.VERTICAL))
-
-        val rightSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.RIGHT){
+        val rightSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.RIGHT) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
                 //myAdapter.getRef(viewHolder!!.adapterPosition).removeValue()
                 toast("Nota Archivada")
@@ -105,9 +107,9 @@ class noteRecyclerFragment : Fragment() {
             }
 
         }
-        val leftSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.LEFT){
+        val leftSwipeHandler = object : AbstractSwipeCallback(context = context!!, swipeDirection = ItemTouchHelper.LEFT) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
-                //myAdapter.getRef(viewHolder!!.adapterPosition).removeValue()
+                myAdapter.getRef(viewHolder!!.adapterPosition).removeValue()
                 toast("Nota Borrada")
 
             }
@@ -120,6 +122,7 @@ class noteRecyclerFragment : Fragment() {
     companion object {
         ///EDITAR PARÁMETRO DEL MÉTODO
         val builder = TextDrawable.builder().beginConfig().withBorder(4).endConfig().round()
+
         fun newInstance(title: String) =
                 noteRecyclerFragment().apply {
                 }

@@ -14,6 +14,7 @@ import com.example.richard.rnoteauth.R
 abstract class AbstractSwipeCallback(val context: Context, val swipeDirection: Int) : ItemTouchHelper.SimpleCallback(0, swipeDirection) {
 
     private val background = ColorDrawable()
+    
 
     override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?): Boolean {
        //Does not allow the note to move

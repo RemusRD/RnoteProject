@@ -65,8 +65,7 @@ class NoteActivity : AppCompatActivity() {
             }
             actionBarDrawerToggleEnabled = true
             primaryItem("Todas tus notas") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_sticky_note
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -75,13 +74,11 @@ class NoteActivity : AppCompatActivity() {
             }
 
             expandableBadgeItem("Cuadernos") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 badge("2")
                 iicon = FontAwesome.Icon.faw_book
                 secondaryItem("Cuaderno 1") {
-                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                     iicon = GoogleMaterial.Icon.gmd_book
                     level = 2
                     onClick { _ ->
@@ -91,8 +88,7 @@ class NoteActivity : AppCompatActivity() {
                 }
                 secondaryItem("Cuaderno 2") {
 
-                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                     iicon = GoogleMaterial.Icon.gmd_book
                     level = 2
                     onClick { _ ->
@@ -102,8 +98,7 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
             primaryItem("Modo sin conexión") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_wifi
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -115,8 +110,6 @@ class NoteActivity : AppCompatActivity() {
             }
 
             secondaryItem("Opciones") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
                 iicon = FontAwesome.Icon.faw_cog
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -125,8 +118,7 @@ class NoteActivity : AppCompatActivity() {
 
             }
             secondaryItem("Open source") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_github
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -134,8 +126,7 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
             secondaryItem("Contacto") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_bullhorn
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -145,8 +136,7 @@ class NoteActivity : AppCompatActivity() {
             }
 
             secondaryItem("Acerca de") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_users
                 onClick { _ ->
                     toast("Aún por implementar")
@@ -154,8 +144,7 @@ class NoteActivity : AppCompatActivity() {
                 }
             }
             secondaryItem("Ayúdame") {
-                selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                 iicon = FontAwesome.Icon.faw_paypal
                 onClick { _ ->
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(PAYPAL_LINK)))
@@ -166,8 +155,7 @@ class NoteActivity : AppCompatActivity() {
             footer {
 
                 primaryItem("Reportar un problema") {
-                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                     iicon = FontAwesome.Icon.faw_bug
                     onClick { _ ->
                         toast("Aún por implementar")
@@ -176,8 +164,7 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
                 primaryItem("Perfil") {
-                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                     iicon = FontAwesome.Icon.faw_user
                     onClick { _ ->
                         toast("Aún por implementar")
@@ -186,8 +173,7 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
                 primaryItem("Cerrar sesión") {
-                    selectedIconColor = getColor(R.color.primaryDarkColor).toLong()
-                    selectedTextColor = getColor(R.color.primaryDarkColor).toLong()
+
                     iicon = FontAwesome.Icon.faw_sign_out_alt
                     onClick { _ ->
                         FirebaseAuth.getInstance().signOut()
@@ -211,16 +197,19 @@ class NoteActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        ///IMPLEMENTAR BÚSQUEDA DE NOTAS
+        with(supportActionBar!!) {
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+        ///IMPLEMENTAR BÚSQUEDADE NOTAS
         //val searchItem =  menu.findItem(R.id.searchView)
         //val searchView = searchItem.actionView as SearchView
         //searchView.setIconifiedByDefault(true)
         //searchView.isSubmitButtonEnabled=false
         //searchView.queryHint = getString(R.string.search_menu_title)
-        //searchView.setOnQueryTextListener(onQueryTextListener)
+
+        //searchView.setOnQueryTextListener()
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -232,6 +221,7 @@ class NoteActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         startActivity(Intent(this, LastLoginActivity::class.java))
+        toast("Pulsa otra vez atrás para cerrar sesión")
         finish()
     }
 
